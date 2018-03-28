@@ -2,6 +2,7 @@ package mauropiva.reti2018.esercitazioni.controllers;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
+import io.swagger.annotations.ApiModelProperty;
 import jdk.nashorn.internal.runtime.ECMAException;
 import mauropiva.reti2018.esercitazioni.beans.*;
 import mauropiva.reti2018.esercitazioni.services.UsersDB;
@@ -9,6 +10,7 @@ import mauropiva.reti2018.esercitazioni.services.VotiDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.jws.soap.SOAPBinding;
 
@@ -173,7 +175,8 @@ public class MainController {
         }
     }
 
-
+    //@ApiModelProperty(hidden=true)
+    @ApiIgnore
     @CrossOrigin(origins = "*")
     @RequestMapping(value =  "/sendVal", method = POST, consumes = "application/json")
     public void sendVal(@RequestBody SurveyInput surveyInput) throws Exception {
@@ -190,6 +193,9 @@ public class MainController {
 
     }
 
+
+    @ApiIgnore
+    //@ApiModelProperty(hidden=true)
     @RequestMapping(value =  "/delVal", method = GET)
     public void delVal() throws Exception {
         Timer.Context timer = helloTimer.time();
@@ -205,8 +211,9 @@ public class MainController {
 
     }
 
+    @ApiIgnore
+    //@ApiModelProperty(hidden=true)
     @CrossOrigin(origins = "*")
-
     @RequestMapping(value =  "/getVal", method = GET)
     public VotiAnswer getVal() throws Exception {
         Timer.Context timer = helloTimer.time();
